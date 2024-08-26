@@ -17,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 route::resource('users',UserController::class);
 route::get('products', [ShopifyController::class, 'getProducts'])->name('products');
+route::get('orders', [ShopifyController::class, 'getOrders'])->name('orders');
+route::post('create/order', [ShopifyController::class, 'createOrder']);
 route::get('store/locations', [ShopifyController::class, 'getStoreLocations'])->name('products');
+Route::put('/shopify/product/{productId}', [ShopifyController::class, 'updateProduct']);
+Route::post('/shopify/productQuantity', [ShopifyController::class, 'updateProductQuantity']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
